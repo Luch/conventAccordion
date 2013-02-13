@@ -11,15 +11,15 @@ Styling options are given with the declaration of the ol (ordered list).
 
 As class:
 
-	theme								// basic (default), dark, light or stitch
-	rounded								// not-rounded (default), rounded
-	orientation							// horizontal (default) or vertical
+	theme					 // basic (default), dark, light or stitch
+	rounded					 // not-rounded (default), rounded
+	orientation				 // horizontal (default) or vertical
 	
 As style:
 
-	width								// in px, auto makes accordion responsive to window size change
-	height								// in px, auto makes height 1/3 of width
-	list-style-type						// decimal (default), decimal-leading-zero, lower-roman, upper-roman, lower-alpha, upper-alpha, upper-latin, none
+	width					 // in px, auto makes accordion responsive to window size change
+	height					 // in px, auto makes height 1/3 of width
+	list-style-type			 // decimal (default), decimal-leading-zero, lower-roman, upper-roman, lower-alpha, upper-alpha, upper-latin, none
 
 
 ***
@@ -27,22 +27,22 @@ As style:
 
 These are the default settings for the conventAccordion plugin:
 
-	pauseOnHover: false,				// pause on hover
-	actOnHover: false,					// activate slide on hover
+	pauseOnHover: false,	 // pause on hover
+	actOnHover: false,		 // activate slide on hover
 	
-	autoPlay: false,					// automatically cycle through slides
-	slideInterval: 3000,				// time between slide cycles
-	continuous: true,					// autoPlay one cycle or continuous
+	autoPlay: false,		 // automatically cycle through slides
+	slideInterval: 3000,	 // time between slide cycles
+	continuous: true,		 // autoPlay one cycle or continuous
 	
-	startSlide: 1,						// displays slide (n) on page load
-	slideSpeed: 600,					// slide animation speed
-	easing: 'swing', 					// custom easing function
+	startSlide: 1,			 // displays slide (n) on page load
+	slideSpeed: 600,		 // slide animation speed
+	easing: 'swing', 		 // custom easing function
 	
-	autoScaleImages: false,				// if a single image is placed within the slide, this will be automatically scaled to fit
-	minContainerWidth : 300,            // minimum width the accordion will resize to
-	maxContainerWidth : 960,            // maximum width the accordion will resize to
+	autoScaleImages: false,	 // if a single image is placed within the slide, this will be automatically scaled to fit
+	minContainerWidth : 300, // minimum width the accordion will resize to
+	maxContainerWidth : 960, // maximum width the accordion will resize to
 	
-	linkable : false                    // link slides via hash			
+	linkable : false         // link slides via hash			
 
 ***
 ###Methods
