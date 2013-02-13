@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+<meta charset=utf-8 />
+<meta name="description" content="description">
+ 
+<title>conventAccordion</title>
+<!-- Scripts -->
+<style>
+	/* css for this page */
+	figure { display: block; width: 100%; height: 100%; margin: 0 }
+	figcaption { padding: 10px 15px; position: absolute; bottom: 20px; right: 30px; z-index: 3; background: black; background: rgba(0,0,0,0.7); color: white;
+		-webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px }
+</style>
+<link rel="stylesheet" type="text/css" media="screen" href="css/demopage.css"/> 
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>
+ </head>
+ 
+<body>
+
+   <div class="sample">
+    <h1>jQuery CONVENT Accordion Plugin</h1>
+	
+	<ol class="rounded dark" id="accordion_1" style="width: auto; height: auto; list-style-type: upper-roman">
+		<li>
+			<div>Slide One</div>
+			<div>
+				<figure>
+					<img src="img-demo/1.jpg" alt="image" />
+					<figcaption>Assassini!</figcaption>
+				</figure>
+			</div>
+		</li>
+		<li>
+			<div>Slide Two</div>
+			<div>
+				<figure>
+					<img src="img-demo/2.jpg" alt="image" />
+					<figcaption>Couldn't find an image of a Khajit thief! Fail!</figcaption>
+				</figure>
+			</div>
+		</li>
+		<li>
+			<div>Slide Three</div>
+			<div>
+				<figure>
+					<img src="img-demo/3.jpg" alt="image" />
+					<figcaption>That's one angry looking red dude.</figcaption>
+				</figure>
+			</div>
+		</li>
+		<li>
+			<div>Slide Four</div>
+			<div>
+				<figure>
+					<img src="img-demo/4.jpg" width="768" alt="image" />
+					<figcaption>Was fun for a couple of hours or so...</figcaption>
+				</figure>
+			</div>
+		</li>
+		<li>
+			<div>Slide Five</div>
+			<div>
+				<figure>
+					<img src="img-demo/5.jpg" alt="image" />
+					<figcaption>Not as good as Hot Pursuit.</figcaption>
+				</figure>
+			</div>
+		</li>
+	</ol>
+
+    <ol class="stitch" id="accordion_2" style="width: 900px; height: 600px; list-style-type: upper-latin">
+      <li>
+        <div>First one</div>
+			<div>
+
+			    <ol class="vertical stitch" id="accordion_4" style="list-style-type: lower-alpha"> 
+				  <li>
+					<div>First one</div>
+					<div>
+					  <h2>Slide 1</h2>
+					  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+					  <img src="img-demo/city1.jpg" alt="">
+					</div>
+				  </li>
+				  <li>
+					<div>Second</div>
+					<div>
+					  <h2>Slide 2</h2>
+					  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+					  <img src="img-demo/city2.jpg" alt="">
+					</div>
+				  </li>
+				  <li>
+					<div>Last one in the row</div>
+					<div>
+					  <h2>Slide 3</h2>
+					  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+					  <img src="img-demo/city3.jpg" alt="">
+					</div>
+				  </li>
+				</ol>
+
+			</div>
+      </li>
+      <li>
+        <div>Second</div>
+        <div>
+          <h2>Slide 2</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+          <img src="img-demo/city2.jpg" alt="">
+        </div>
+      </li>
+      <li>
+        <div>Last one in the row</div>
+        <div>
+          <h2>Slide 3</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+          <img src="img-demo/city3.jpg" alt="">
+        </div>
+      </li>
+    </ol>
+	
+    <ol class="rounded light" id="accordion_3" style="width: 960px; height: 320px; list-style-type: decimal-leading-zero">
+      <li>
+        <div>First one</div>
+        <div>
+          <h2>Slide 1</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+          <img src="img-demo/city1.jpg" alt="">
+        </div>
+      </li>
+      <li>
+        <div>Second</div>
+        <div>
+          <h2>Slide 2</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+          <img src="img-demo/city2.jpg" alt="">
+        </div>
+      </li>
+      <li>
+        <div>Last one in the row</div>
+        <div>
+          <h2>Slide 3</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent euismod ultrices ante, ac laoreet nulla vestibulum adipiscing.</p>
+          <img src="img-demo/city3.jpg" alt="">
+        </div>
+      </li>
+    </ol>
+	
+  </div>
+
+<!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<!-- easing -->
+<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+<!-- the script -->
+<script type="text/javascript" src="js/jquery.conventAccordion.js"></script>
+<script>
+
+(function($, d) {
+	
+	$('#accordion_1').conventAccordion({ 
+			autoPlay: true,
+			startSlide: 1,
+			slideInterval: 5000,
+			pauseOnHover: true,
+			actOnHover: true,
+			continuous: false,
+			autoScaleImages : true,
+			slideSpeed: 3000,
+			easing: 'easeOutBounce'
+	});
+
+	$('#accordion_2').conventAccordion({ 
+			autoPlay: false,
+			startSlide: 1,
+			slideInterval: 4000,
+			pauseOnHover: true,
+			actOnHover: false,
+			continuous: true,
+			easing: 'easeInOutQuart'
+	});
+
+	$('#accordion_3').conventAccordion({ 
+			autoPlay: false,
+			slideInterval: 3000,
+			pauseOnHover: true,
+			actOnHover: true,
+			continuous: true,
+			easing: 'easeOutBounce'
+	});
+
+	$('#accordion_4').conventAccordion({ 
+			autoPlay: false,
+			slideInterval: 3000,
+			pauseOnHover: true,
+			actOnHover: false,
+			continuous: true
+	});
+	
+})(jQuery, document);
+
+</script>
+</body>
+</html>

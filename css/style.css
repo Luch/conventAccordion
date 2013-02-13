@@ -1,0 +1,442 @@
+/*BASIC*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*ACCORDION*/
+.conventAccordion {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  list-style-type: none;
+}
+.conventAccordion.vertical li{
+  width: auto;
+  height: auto;
+}
+.conventAccordion.nested {
+  width: auto;
+  height: inherit;
+  padding: 0 !important;
+  border: 0 !important;
+}
+  
+/*LABELS*/
+
+.CAspine {
+  position: relative;
+  z-index: 100;
+  height: inherit;
+  width: 50px;
+  font: 14px/50px Helvetica, Verdana, sans-serif;
+  color: black;
+  font-size: 16px;     
+  font-weight: normal;
+  float: left;
+  -webkit-transform: scale3d(1,1,1); /* fixes webkit bug */
+  -webkit-transition: background 0.5s ease;
+  -moz-transition: background 0.5s ease;
+  -o-transition: background 0.5s ease;
+  -ms-transition: background 0.5s ease;
+  transition: background 0.5s ease;
+}
+.vertical .CAspine {
+  height: 50px;
+  width: inherit;
+  float: top;
+}  
+.CAspineTitle { 
+  position: absolute;
+  height: 50px;
+  padding-right: 15px;
+  text-align: right;
+  -webkit-backface-visibility: hidden; /* fixes webkit bug */
+  /* CSS3 */ transform: translateX(-100%) rotate(-90deg); transform-origin: right top;
+  /* Opera */ -o-transform: translateX(-100%) rotate(-90deg); -o-transform-origin: right top;
+  /* Webkit */ -webkit-transform: translateX(-100%) rotate(-90deg); -webkit-transform-origin: right top; 
+  /* Firefox */ -moz-transform: translateX(-100%) rotate(-90deg); -moz-transform-origin: right top;  
+  /* Internet Explorer 9 */ -ms-transform: translateX(-100%) rotate(-90deg); -ms-transform-origin: right top;
+}
+.vertical .CAspineTitle {
+  height: inherit;
+  width: inherit;
+  left: 50px;
+  text-align: left;
+  -webkit-backface-visibility: hidden; /* fixes webkit bug */
+  /* CSS3 */ transform: translateX(0%) rotate(0deg); transform-origin: right top;
+  /* Opera */ -o-transform: translateX(0%) rotate(0deg); -o-transform-origin: right top;
+  /* Webkit */ -webkit-transform: translateX(0%) rotate(0deg); -webkit-transform-origin: right top; 
+  /* Firefox */ -moz-transform: translateX(0%) rotate(0deg); -moz-transform-origin: right top;  
+  /* Internet Explorer 9 */ -ms-transform: translateX(0%) rotate(0deg); -ms-transform-origin: right top;
+}
+.lteIE8 .CAspineTitle {
+  /* Internet Explorer <9 */ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);cursor:pointer;
+}
+.CAspine:hover{
+  background: #232323;
+  color: #fff;
+  cursor: pointer;
+}
+.CAspineNumber{
+  display: block;
+  position: absolute;
+  height: 50px;
+  width: inherit;
+  bottom: 0;
+  font-weight: normal;
+  font-size: 1.1em;
+  text-align: center;
+}
+.vertical .CAspineNumber{
+  height: inherit;
+  width: 50px;
+  left: 0;
+}
+
+/*SLIDES*/
+.CAslide {
+  top: 0;
+  z-index: 10;
+  background: white;
+  color: #333;
+  display: block;
+  height: inherit;
+  width: 0px;
+  font: 12px/1.5 Helvetica, Verdana, sans-serif;
+  float: left;
+  overflow: hidden;
+}
+.vertical .CAslide {
+  height: 0px;
+  width: 100%;
+}
+.CAslideContent{
+  position: relative;
+  height: inherit;
+}
+.vertical .CAslideContent {
+  width: inherit;
+  padding-top: 5px;
+}
+.CAslideContent> img {
+  margin-top: 10px;
+}
+
+/*ROUNDED*/
+.conventAccordion.rounded { -webkit-border-radius: 6px; -moz-border-radius: 6px; -ms-border-radius: 6px; border-radius: 6px }
+.conventAccordion.rounded .CAspine { -webkit-border-radius: 4px; -moz-border-radius: 4px; -ms-border-radius: 4px; border-radius: 4px }
+
+/****************************************** Basic */
+.conventAccordion.basic li:nth-child(even)> .CAspine {
+  background: #888
+}
+.conventAccordion.basic li:nth-child(odd)> .CAspine {
+  background: #999
+}
+
+/****************************************** Dark */
+.conventAccordion.dark { 
+  border: 9px solid #353535; 
+  border-bottom-width: 8px; 
+  padding: 5px 5px 6px 0; 
+  background: #030303; 
+  -webkit-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4); 
+  -moz-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4); 
+  -ms-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+.conventAccordion.dark.vertical { 
+  padding: 5px 6px 6px 6px; 
+}
+.conventAccordion.dark .CAspine {
+  width: 43px;
+  margin-left: 5px;
+  background: #353535;
+  text-shadow: 0 -1px 0 #030303
+}
+.conventAccordion.dark.vertical .CAspine.next {
+  margin-top: 5px;
+}
+.conventAccordion.dark.vertical .CAspine {
+  height: 43px; 
+  width: inherit;
+  margin-bottom: 5px;
+  margin-left: 0
+}  
+.conventAccordion.dark .CAspineTitle {
+  padding-right: 20px;
+  color: white;
+  line-height: 265%
+}
+.conventAccordion.dark .CAspineNumber {
+  color: #030303;
+  margin-bottom: 15px;
+  text-shadow: -1px 1px 0 #5b5b5b
+}
+.conventAccordion.dark.vertical .CAspineNumber {
+  margin-bottom: 3px
+}
+.conventAccordion.dark .CAspine.active {
+  margin-right: 5px; 
+  background: #353535;
+  background: -moz-linear-gradient(top,  #555555 0%, #353535 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#353535));
+  background: -webkit-linear-gradient(top, #555555 0%,#353535 100%);
+  background: -o-linear-gradient(top,  #555555 0%,#353535 100%);
+  background: -ms-linear-gradient(top,  #555555 0%,#353535 100%);
+  background: linear-gradient(top,  #555555 0%,#353535 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#353535',GradientType=1 );
+}
+.conventAccordion.dark .active.CAspine:after {
+  z-index: 98;
+  background: #555555;
+  content: '';
+  display: block;
+  height: 20px; 
+  width: 20px;
+  position: absolute;  
+  left: 33px;
+  top: 25px;
+  -webkit-transform: rotate(-45deg); 
+  -moz-transform: rotate(-45deg); 
+  -o-transform: rotate(-45deg); 
+  transform: rotate(-45deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  border-top: 0;
+  border-left: 0;  
+}
+.conventAccordion.dark.vertical .CAspine.active {
+  margin-right: 0;  
+  background: #353535;
+  background: -moz-linear-gradient(left,  #555555 0%, #353535 100%);
+  background: -webkit-gradient(linear, left center, rigth center, color-stop(0%,#555555), color-stop(100%,#353535));
+  background: -webkit-linear-gradient(left, #555555 0%,#353535 100%);
+  background: -o-linear-gradient(left,  #555555 0%,#353535 100%);
+  background: -ms-linear-gradient(left,  #555555 0%,#353535 100%);
+  background: linear-gradient(left,  #555555 0%,#353535 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#353535',GradientType=1 );
+}
+.conventAccordion.dark.vertical .active.CAspine:after {
+  left: 50px;
+  top: 33px;
+}
+.conventAccordion.dark .CAslide {
+/*  background: #030303; */
+}
+.conventAccordion.dark .CAslideContent {
+  margin-left: 5px; 
+}
+
+/***************************************** Light */
+.conventAccordion.light { 
+  border: 9px solid white; 
+  border-bottom-width: 8px; 
+  padding: 5px 5px 6px 0; 
+  background: #a0a0a0; 
+  -webkit-box-shadow: -1px -1px 0 #c0c0c0, 1px 1px 0 #c0c0c0, 0 5px 15px rgba(0, 0, 0, 0.4); 
+  -moz-box-shadow: -1px -1px 0 #c0c0c0, 1px 1px 0 #c0c0c0, 0 5px 15px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: -1px -1px 0 #c0c0c0, 1px 1px 0 #c0c0c0, 0 5px 15px rgba(0, 0, 0, 0.4);    
+  -o-box-shadow: -1px -1px 0 #c0c0c0, 1px 1px 0 #c0c0c0, 0 5px 15px rgba(0, 0, 0, 0.4); 
+  box-shadow: -1px -1px 0 #c0c0c0, 1px 1px 0 #c0c0c0, 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+.conventAccordion.light .CAspine {
+  width: 43px;
+  margin-left: 5px;
+  background: #fcfcfc;
+  background: -moz-linear-gradient(top,  #fcfcfc 0%, #ededed 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#fcfcfc));
+  background: -webkit-linear-gradient(top,  #ededed 0%,#fcfcfc 100%);
+  background: -o-linear-gradient(top,  #ededed 0%,#fcfcfc 100%);
+  background: -ms-linear-gradient(top,  #ededed 0%,#fcfcfc 100%);
+  background: linear-gradient(top,  #ededed 0%,#fcfcfc 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#fcfcfc',GradientType=1 );
+  -webkit-box-shadow: -1px -1px 0 #909090 inset, 1px 1px 0 #909090 inset; 
+  -moz-box-shadow: -1px -1px 0 #909090 inset, 1px 1px 0 #909090 inset;
+  -o-box-shadow: -1px -1px 0 #909090 inset, 1px 1px 0 #909090 inset;
+  box-shadow: -1px -1px 0 #909090 inset, 1px 1px 0 #909090 inset;
+  color: #909090;
+}
+.conventAccordion.light.vertical .CAspine {
+  margin-right: 0;  
+  background: -moz-linear-gradient(left,  #fcfcfc 0%, #ededed 100%);
+  background: -webkit-gradient(linear, left center, rigth center, color-stop(0%,#fcfcfc), color-stop(100%,#ededed));
+  background: -webkit-linear-gradient(left, #fcfcfc 0%,#ededed 100%);
+  background: -o-linear-gradient(left,  #fcfcfc 0%,#ededed 100%);
+  background: -ms-linear-gradient(left,  #fcfcfc 0%,#ededed 100%);
+  background: linear-gradient(left,  #fcfcfc 0%,#ededed 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=1 );
+}
+.conventAccordion.light .CAspineTitle {
+  text-shadow: 0 -1px 0 white;
+  padding-right: 20px;
+  line-height: 300%
+}
+.conventAccordion.light .CAspineNumber {
+  color: #909090;
+  text-shadow: -1px 1px 0 white
+}
+.conventAccordion.light .active .CAspine {
+  background: #ffffff
+}
+.conventAccordion.light .active.CAspine:after {
+  z-index: 98;
+  background: #ededed;
+  content: '';
+  display: block;
+  height: 20px; 
+  width: 20px;
+  position: absolute;  
+  left: 33px;
+  top: 25px;
+  -webkit-transform: rotate(-45deg); 
+  -moz-transform: rotate(-45deg); 
+  -o-transform: rotate(-45deg); 
+  transform: rotate(-45deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  border-top: 0;
+  border-left: 0;  
+}
+.conventAccordion.light.vertical .active.CAspine:after {
+  background: #fcfcfc;
+  left: 50px;
+  top: 37px;
+}
+.conventAccordion.light .CAslide {
+  background: #a0a0a0;
+}
+.conventAccordion.light .CAslideContent {
+  margin-left: 5px; 
+}
+ 
+/**************************************** Stitch */
+.conventAccordion.stitch {
+  padding: 5px 0 5px 5px;
+  -webkit-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4); 
+  -moz-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4); 
+  -o-box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 -1px 0 #5b5b5b inset, 0 5px 15px rgba(0, 0, 0, 0.4);
+  background: #353535; 
+  border: 9px solid transparent;    
+  -webkit-border-image: url('bg_stitch.png') 9 repeat; 
+  -moz-border-image: url('bg_stitch.png') 9 repeat;
+  -o-border-image: url('bg_stitch.png') 9 repeat;
+  border-image: url('bg_stitch.png') 9 repeat;   
+}
+.conventAccordion.vertical.stitch {
+  padding: 5px 5px 5px 0;
+}  
+.conventAccordion.stitch .CAspine {
+  background: #353535;
+  width: 30px;
+  background-image: url('bg_noise.png');
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 6px;
+  border: 9px solid transparent;
+  -webkit-border-image: url('bg_stitch.png') 9 repeat; 
+  -moz-border-image: url('bg_stitch.png') 9 repeat;
+  -o-border-image: url('bg_stitch.png') 9 repeat;
+  border-image: url('bg_stitch.png') 9 repeat;    
+}
+.conventAccordion.stitch .CAspine.next {
+  margin-left: 6px
+}
+.conventAccordion.vertical.stitch .CAspine.next {
+  margin-left: 0;
+  margin-top: 6px
+}
+.conventAccordion.vertical.stitch .CAspine {
+  height: 30px;
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 6px;
+}  
+.conventAccordion.stitch .CAspineTitle  {
+  text-align: right; 
+  height: 30px;
+  width: 292px;
+  line-height: 225%;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+  color: white;
+  text-shadow: -1px 1px 0 #5b5b5b;
+}
+.conventAccordion.vertical.stitch .CAspineTitle  {
+  text-align: left;
+}  
+.conventAccordion.stitch .active.CAspine:after {
+  content: '';
+  display: block;
+  height: 11px; 
+  width: 11px;
+  position: absolute;  
+  left: 28px;
+  top: 25px;
+  -webkit-transform: rotate(-45deg); 
+  -moz-transform: rotate(-45deg); 
+  -o-transform: rotate(-45deg); 
+  transform: rotate(-45deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  border: 9px solid transparent;
+  border-top: 0;
+  border-left: 0;  
+  -webkit-border-image: url('bg_stitch.png') 9 repeat; 
+  -moz-border-image: url('bg_stitch.png') 9 repeat;
+  -o-border-image: url('bg_stitch.png') 9 repeat;
+  border-image: url('bg_stitch.png') 9 repeat;  
+  background-image: url('bg_noise.png') 
+}
+.conventAccordion.stitch.vertical .active.CAspine:after {
+  left: 50px;
+  -webkit-transform: rotate(45deg); 
+  -moz-transform: rotate(45deg); 
+  -o-transform: rotate(45deg); 
+  transform: rotate(45deg);
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2)
+}
+.conventAccordion.stitch .CAspine_1, .conventAccordion.stitch  .active.CAspine_1:after {
+  background-color: #c25252
+}
+.conventAccordion.stitch .CAspine_2, .conventAccordion.stitch  .active.CAspine_2:after {
+  background-color: #ca9859
+}
+.conventAccordion.stitch .CAspine_3, .conventAccordion.stitch  .active.CAspine_3:after {
+  background-color: #96ba5f
+}
+.conventAccordion.stitch .CAspine_4, .conventAccordion.stitch  .active.CAspine_4:after{
+  background-color: #59abb7
+}
+.conventAccordion.stitch .CAspine_5, .conventAccordion.stitch  .active.CAspine_5:after {
+  background-color: #bb6098
+}
+.conventAccordion.stitch .CAspineNumber {
+  color: white;
+  text-shadow: 1px 1px 0 #5b5b5b
+}
+.conventAccordion.stitch .CAspineNumber {
+  bottom: 8px;
+}
+.conventAccordion .ap-caption {
+  padding: 10px 15px;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  z-index: 3;
+  background: black;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px
+}
+
