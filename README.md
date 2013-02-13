@@ -8,15 +8,18 @@ Demo page at http://members.ziggo.nl/luch.klooster/
 ###Styling
 
 Styling options are given with the declaration of the ol (ordered list).
+
 As class:
-	theme								basic (default), dark, light or stitch
-	rounded								
-	orientation							horizontal (default) or vertical
+
+	theme								// basic (default), dark, light or stitch
+	rounded								// not-rounded (default), rounded
+	orientation							// horizontal (default) or vertical
 	
 As style:
-	width								in px, auto makes accordion responsive to window size change
-	height								in px, auto makes height 1/3 of width
-	list-style-type						decimal (default, decimal-leading-zero, lower-roman, upper-roman, lower-alpha, upper-alpha, upper-latin, none
+
+	width								// in px, auto makes accordion responsive to window size change
+	height								// in px, auto makes height 1/3 of width
+	list-style-type						// decimal (default), decimal-leading-zero, lower-roman, upper-roman, lower-alpha, upper-alpha, upper-latin, none
 
 
 ***
@@ -46,13 +49,13 @@ These are the default settings for the conventAccordion plugin:
 
 These are the methods for the conventAccordion plugin:
 
-	play									// trigger autoPlay on a stopped accordion
-	stop									// stop an accordion playing
-	next									// trigger the next slide
-	prev									// trigger the previous slide
-	active,n								// trigger slide n
-	destroy									// remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
-	debug									// returns a debug object
+	play								// trigger autoPlay on a stopped accordion
+	stop								// stop an accordion playing
+	next								// trigger the next slide
+	prev								// trigger the previous slide
+	active,n							// trigger slide n
+	destroy								// remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
+	debug								// returns a debug object
 
 All of these methods are chainable (i.e. they return the original DOM object) with the exception of the debug method.  To call a method, use:
 
