@@ -31,6 +31,7 @@
     "bugs": "https://github.com/Luch/conventAccordion/issues",
     "homepage": "https://github.com/Luch/conventAccordion",
     "docs": "http://members.ziggo.nl/luch.klooster/",
+    "demo": "http://members.ziggo.nl/luch.klooster/",
     "download": "https://github.com/Luch/conventAccordion",
     "dependencies": {
         "jquery": ">=1.4"
