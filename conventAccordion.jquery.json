@@ -1,0 +1,38 @@
+{
+    "name": "conventAccordion",
+    "title": "jQuery conventAccordion",
+    "description": "jQuery plugin for horizontal and/or vertical accordion.",
+    "keywords": [
+        "accordion",
+        "animation",
+		"horizontal",
+		"vertical"
+    ],
+    "version": "0.1.0",
+    "author": {
+        "name": "Luch Klooster - CONVENT app & web design & development",
+        "url": "https://github.com/Luch/conventAccordion"
+    },
+    "maintainers": [
+        {
+            "name": "Luch Klooster",
+            "email": "luch.klooster@gmail.com",
+            "url": "http://members.ziggo.nl/luch.klooster/"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+			"url": "https://github.com/Luch/conventAccordion/mit.txt",
+			"type": "GPL",
+			"url": "https://github.com/Luch/conventAccordion/gpl.txt"			
+        }
+    ],
+    "bugs": "https://github.com/Luch/conventAccordion/issues",
+    "homepage": "https://github.com/Luch/conventAccordion",
+    "docs": "http://members.ziggo.nl/luch.klooster/",
+    "download": "https://github.com/Luch/conventAccordion",
+    "dependencies": {
+        "jquery": ">=1.4"
+    }
+}
