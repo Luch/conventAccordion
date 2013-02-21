@@ -1,4 +1,4 @@
-##[conventAccordion](http://nicolahibbert.com/demo/liteAccordion/)
+##[conventAccordion](http://members.ziggo.nl/luch.klooster/)
 
 conventAccordion is an accordion plugin for jQuery.
 
@@ -67,6 +67,10 @@ $('#yourdiv').conventAccordion('next').conventAccordion('next');
 
 ***
 ###Changelog
+
+**v0.1.1** - 21/02/2013
+
+ - corrected an error in the readme file.
 
 **v0.1** - 26/01/2013
 
