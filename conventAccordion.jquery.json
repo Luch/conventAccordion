@@ -4,11 +4,14 @@
     "description": "jQuery plugin for horizontal and/or vertical accordion.",
     "keywords": [
         "accordion",
+		"gallery",
+		"rotating banner",
+		"slidedeck",
         "animation",
 		"horizontal",
 		"vertical"
     ],
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": {
         "name": "Luch Klooster - CONVENT app & web design & development",
         "url": "https://github.com/Luch/conventAccordion"

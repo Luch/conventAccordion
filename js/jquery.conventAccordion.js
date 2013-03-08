@@ -1,5 +1,5 @@
 /*
- * 	conventAccordion 0.1.0 - jQuery plugin
+ * 	conventAccordion 1.0.0 - jQuery plugin
  *	written by Luch Klooster 	
  *	http://www.madeincima.eu
  *
@@ -10,6 +10,10 @@
  *  0.1.0 2013-01-26 Luch Klooster
  *  Total redesign of easyAccordion. Now based on ordered list. Renamed to conventAccordion.
  *  Can be used for vertical and horizontal accordions.
+ *  1.0.0 2013-03-08 Luch Klooster
+ *  First full production version.
+ *  Supports now spineless accordions to be used as gallery slidedeck and rotating banner.
+ *	Extended navigation functions (external method navigation).
  */
 ;(function($) {
 
@@ -31,7 +35,17 @@
             minContainerWidth : 300,            // minimum width the accordion will resize to
             maxContainerWidth : 960,            // maximum width the accordion will resize to
             
-            linkable : false                    // link slides via hash			
+            linkable : false,					// link slides via hash
+
+			prevText: '&laquo;',
+			nextText: '&raquo;',
+			playText: 'Play',
+			stopText: 'Stop',
+			prevTitle: 'Previous',
+			nextTitle: 'Next',
+			playTitle: 'Play',
+			stopTitle: 'Stop'
+			
         },
 		
         // merge defaults with options in new settings object 
@@ -40,9 +54,11 @@
         // globals
 			listItems = accordion.children('li'),
 		    spines = listItems.children(':first-child'),
-            slides = listItems.children(':first-child').next(),			
+            slides = listItems.children(':first-child').next(),
+			navParent = null,
+			navItems = null,
 			activeID = 0,
-            startSlide = settings.startSlide - 1,
+            startSlide = (settings.startSlide - 1),
             accordionID = accordion.attr('id'),
 			orientation = '',
 			listStyleType = 'none',
@@ -55,6 +71,7 @@
 			responsive = false,
 			scale = false,
 			nested = false,
+			nav = false,					// html for navigation
 
         // public methods
             methods = {
@@ -75,32 +92,111 @@
 							}
 						}
                     }, settings.slideInterval);
+					$('.CAplay').addClass('disabled');
+					$('.CAstop').removeClass('disabled');
+
                 },
             
                 // stop elem animation
                 stop : function() {
                     clearInterval(core.playing);
                     core.playing = 0;
+					$('.CAstop').addClass('disabled');
+					$('.CAplay').removeClass('disabled');
                 },
 
+				
                 // trigger next slide
                 next : function() {
-                    methods.stop();
-                    spines.eq(activeID === slideTotal - 1 ? 0 : activeID + 1).trigger('click.conventAccordion');
+					if (settings.continuous) { 
+						methods.stop();
+						spines.eq(activeID === slideTotal - 1 ? 0 : activeID + 1).trigger('click.conventAccordion');
+					} else {
+						if (activeID < slideTotal) {
+							methods.stop();
+							spines.eq(activeID + 1).trigger('click.conventAccordion');
+						}
+					}
                 },
 
                 // trigger previous slide
                 prev : function() {
-                    methods.stop();
-                    spines.eq(activeID - 1).trigger('click.conventAccordion');  
-                },
+					if (settings.continuous) { 
+						methods.stop();
+						spines.eq(activeID - 1).trigger('click.conventAccordion');
+					} else {
+						if (activeID > 0) {
+							methods.stop();
+							spines.eq(activeID - 1).trigger('click.conventAccordion');
+						}			
+					}
+				},
 
 				// trigger slide n
                 activate : function(n) {
                     methods.stop();
                     spines.eq(n - 1).trigger('click.conventAccordion');
                 },
-               
+
+				// create html for navigation
+				navigation : function(param) {
+					if (!nav) {
+						var buttons = new Array();
+						if (!param) {
+							buttons.push('slides'); 
+						} else {
+							buttons = param.split(',');
+						}
+						navParent = $('<ul class="CAnavigation" style="list-style-type: none;">');
+						for(var i in buttons) {
+							switch (buttons[i].trim()) {
+							case 'slides':
+								spines.each(function(index) {
+									var $this = $(this);
+									var navLi = $('<li class="CAnavSpine CAnav_' + (index + 1) + '" onclick="$(' + accordionID + ').conventAccordion(\'activate\', ' + (index + 1) + ')"></li>');
+									if (index === startSlide) {navLi.addClass('active')};
+									if (index === (startSlide + 1)) {navLi.addClass('next')};						
+									navLi.append('<span class="CAnavTitle">' + $this.find('.CAspineTitle').text() + '</span>');
+									navLi.append('<span class="CAnavNumber">' + $this.find('.CAspineNumber').text() + '</span>');
+									navParent.append(navLi);
+								});
+								break;
+							case 'prev':
+								var navLi = $('<li class="CAprev" onclick="$(' + accordionID + ').conventAccordion(\'prev\')"></li>');
+									navLi.append('<span class="CAnavTitle">'+ settings.prevTitle + '</span>');
+									navLi.append('<span class="CAnavNumber">' + settings.prevText + '</span>');
+								navParent.append(navLi);
+								break;
+							case 'next':
+								var navLi = $('<li class="CAnext" onclick="$(' + accordionID + ').conventAccordion(\'next\')"></li>');
+									navLi.append('<span class="CAnavTitle">'+ settings.nextTitle + '</span>');
+									navLi.append('<span class="CAnavNumber">'+ settings.nextText + '</span>');
+								navParent.append(navLi);
+								break;
+							case 'play':
+								var navLi = $('<li class="CAplay" onclick="$(' + accordionID + ').conventAccordion(\'play\')"></li>');
+									navLi.append('<span class="CAnavTitle">' + settings.playTitle + '</span>');
+									navLi.append('<span class="CAnavNumber">' + settings.playText + '</span>');
+								navParent.append(navLi);
+								break;
+							case 'stop':
+								var navLi = $('<li class="CAstop" onclick="$(' + accordionID + ').conventAccordion(\'stop\')"></li>');
+									navLi.append('<span class="CAnavTitle">' + settings.stopTitle + '</span>');
+									navLi.append('<span class="CAnavNumber">'+ settings.stopText + '</span>');
+								navParent.append(navLi);
+								break;
+							}
+						}
+						accordion.parent().append(navParent);
+						nav = true;
+						if (core.playing) {
+								$('.CAplay').addClass('disabled');
+						} else {
+								$('.CAstop').addClass('disabled');
+						}
+					}
+				},
+				
                 // destroy plugin instance
                 destroy : function() {                    
                     // stop autoplay
@@ -112,7 +208,7 @@
                     // remove generated styles, classes, data, events
                     accordion
                         .attr('style', '')
-                        .removeClass('conventAccordion horizontal vertical rounded basic dark light stitch')
+                        .removeClass('conventAccordion horizontal vertical rounded basic dark light stitch spineless wind')
                         .removeData('conventAccordion')
                         .off('.conventAccordion')
                         .find('li > :first-child')
@@ -134,6 +230,8 @@
 							.contents()
 							.unwrap();
 					});
+					accordion.parent().find('.CAnavigation').remove();
+					nav = false;
                 },
 
                 // poke around the internals (NOT CHAINABLE)
@@ -145,7 +243,18 @@
                         methods : methods,
                         core : core
                     };
-                }       
+                },
+
+				// current active slide
+				current : function() {
+                    return {current : activeID};
+				},
+				
+				// number of slides
+				totalslides : function() {
+                    return {totalslides : slideTotal};
+				}
+				
 			
             },
 
@@ -227,7 +336,6 @@
 						}
 						CAslide.wrapInner('<div class="CAslideContent">').addClass('CAslide');
 					});
-					
 				},
 			
 				// set the variables
@@ -252,14 +360,14 @@
 					accordion.find('>li').each(function() {
 						var CAspine = $(this).find('>div:first');
 						var CAslide = $(this).find('>div:last');
-						if (orientation == 'horizontal') {
+						if (orientation === 'horizontal') {
 							var CAspineOuter = (CAspine.outerHeight(true) - CAspine.height());
 							var CAslideOuter = (CAslide.outerHeight(true) - CAslide.height());
 							CAspine.height(accordionHeight - CAspineOuter).find('.CAspineTitle').width(accordionHeight - CAspineOuter);
 							CAslide.height(accordionHeight - CAslideOuter);
 							accordion.find('.CAslideContent').width(slideWidth);
 						}  
-						if (orientation == 'vertical') {
+						if (orientation === 'vertical') {
 							var CAspineOuter = (CAspine.outerWidth(true) - CAspine.width());
 							var CAslideOuter = (CAslide.outerWidth(true) - CAslide.width());
 							CAspine.width(accordionWidth - CAspineOuter).find('.CAspineTitle').width(accordionWidth - CAspineOuter);
@@ -305,7 +413,6 @@
                             });
                         }
                     });
-						
 				},
  
 				// bind click and mouseover events
@@ -359,7 +466,7 @@
 
                     $(window).on('hashchange.conventAccordion load.conventAccordion', triggerHash);
                 },
- 
+  
                // next slide index
                 nextSlide : function(index) {
                     var next = index + 1 || activeID + 1;
@@ -369,7 +476,8 @@
                         return next++ % slideTotal;
                     };
                 },  
-    
+ 
+
                 // holds interval counter
                 playing : 0,
                 
@@ -396,7 +504,31 @@
 					} else { 
 					    accordion.parent().find('#'+ accordionID + '>li:eq(' + activeID + ')> div.CAslide').stop(true).animate({width: slideWidth},settings.slideSpeed,settings.easing);
 					}
-
+					
+					// adjust navigation
+					if (nav) {
+						navParent.find('li.active').removeClass('active');	
+						navParent.find('li.next').removeClass('next');
+						navParent.find('.CAnav_' + (activeID + 1)).addClass('active');	
+						navParent.find('.CAnav_' + (activeID + 2)).addClass('next');	
+					}
+					
+					// set arrow classes
+					if (!settings.continuous) {
+						if((activeID + 1) === slideTotal){
+							// disable the next button
+							$('.CAnext').addClass('disabled');
+							$('.CAprev').removeClass('disabled');
+						}else if((activeID) === 0){
+							// disable the previous button
+							$('.CAnext').removeClass('disabled');
+							$('.CAprev').addClass('disabled');
+						}else{
+							// enable both next/previous buttons
+							$('.CAnext, .CAprev').removeClass('disabled');
+						}
+					}
+					
 					// save activeID for pagerefresh
 					store.set(accordionID, activeID);
                             
@@ -446,6 +578,13 @@
 						return s;
 					}
 					
+					// extending the String object with trim
+					if(!String.prototype.trim) {
+						String.prototype.trim = function () {
+						return this.replace(/^\s+|\s+$/g,'');
+						};
+					}
+					
 					core.setStyles();
                     // init styles and events
 					if (responsive) {
@@ -453,7 +592,8 @@
 					} else {
 						core.setVariables();
 					}
-					if (settings.autoScaleImages) core.autoScaleImages();						
+					if (settings.autoScaleImages) core.autoScaleImages();
+					if (settings.navigation) core.createNav();
                     core.bindEvents();
 
 				    function trackerObject() {this.value = null};
@@ -474,7 +614,7 @@
 				}
 			};
 			
-        // store utility methods to support localStore with Cookies as fallback
+			// store utility methods to support localStore with Cookies as fallback
 			store = {
 				localStoreSupport : function() {
 					try {
@@ -552,7 +692,7 @@
         // otherwise, call method on current instance
         } else if (typeof method === 'string' && instance[method]) {
             // debug method isn't chainable b/c we need the debug object to be returned
-            if (method === 'debug') {
+            if (method === 'debug' || method === 'current' || method === 'totalslides') {
                 return instance[method].call(elem);
             } else { // the rest of the methods are chainable though
                 instance[method].call(elem, param);

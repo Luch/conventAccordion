@@ -11,7 +11,7 @@ Styling options are given with the declaration of the ol (ordered list).
 
 As class:
 
-	theme					 // basic (default), dark, light or stitch
+	theme					 // basic (default), dark, light, stitch or spineless
 	rounded					 // not-rounded (default), rounded
 	orientation				 // horizontal (default) or vertical
 	
@@ -20,7 +20,6 @@ As style:
 	width					 // in px, auto makes accordion responsive to window size change
 	height					 // in px, auto makes height 1/3 of width
 	list-style-type			 // decimal (default), decimal-leading-zero, lower-roman, upper-roman, lower-alpha, upper-alpha, upper-latin, none
-
 
 ***
 ###Options
@@ -44,19 +43,29 @@ These are the default settings for the conventAccordion plugin:
 	
 	linkable : false         // link slides via hash			
 
+	prevText: '&laquo;',	 // text of prev control
+	nextText: '&raquo;',	 // text of next control
+	playText: 'Play',		 // text of play control		 
+	stopText: 'Stop',		 // text of stop control		
+	prevTitle: 'Previous',	 // title of prev control
+	nextTitle: 'Next',		 // title of next control
+	playTitle: 'Play',		 // title of play control
+	stopTitle: 'Stop'		 // title of stop control
+
 ***
 ###Methods
 
 These are the methods for the conventAccordion plugin:
 
-	play								// trigger autoPlay on a stopped accordion
-	stop								// stop an accordion playing
-	next								// trigger the next slide
-	prev								// trigger the previous slide
-	active,n							// trigger slide n
-	destroy								// remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
-	debug								// returns a debug object
-
+	play		 			 // trigger autoPlay on a stopped accordion
+	stop					 // stop an accordion playing
+	next					 // trigger the next slide
+	prev				 	 // trigger the previous slide
+	active,n				 // trigger slide n
+	destroy					 // remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
+	debug					 // returns a debug object
+	navigation				 // create an external navigation structure
+	
 All of these methods are chainable (i.e. they return the original DOM object) with the exception of the debug method.  To call a method, use:
 
 $('#yourdiv').conventAccordion('play');
@@ -67,6 +76,11 @@ $('#yourdiv').conventAccordion('next').conventAccordion('next');
 
 ***
 ###Changelog
+**v1.0.0** = 08/03/2013
+
+ -  First full production version.
+ -  Supports now spineless accordions to be used as gallery slidedeck and rotating banner.
+ -	Extended navigation functions (external method navigation).
 
 **v0.1.1** - 21/02/2013
 
