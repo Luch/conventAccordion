@@ -76,7 +76,16 @@ $('#yourdiv').conventAccordion('next').conventAccordion('next');
 
 ***
 ###Changelog
-**v1.0.0** = 08/03/2013
+
+**v1.0.2** - 11/03/2013
+
+ -  Update for publishing on plugins.jquery.com.
+
+**v1.0.1** - 09/03/2013
+
+ -  Corrected error in Manifest.
+
+**v1.0.0** - 08/03/2013
 
  -  First full production version.
  -  Supports now spineless accordions to be used as gallery slidedeck and rotating banner.
