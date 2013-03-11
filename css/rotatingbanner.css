@@ -1,0 +1,104 @@
+/*::::::::::::::: conventAccordion SLIDE STYLE (BEGIN) :::::::::::::::*/
+
+.rb.wrapper {
+	width: 720px;
+	height: 320px;
+	position: relative;
+	overflow:hidden;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.rb .conventAccordion {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	float: right;
+	background: #ccc;
+}
+
+.rb .conventAccordion > div {
+	position: relative;
+	margin: 0;
+	border-bottom: 1px solid #ccc;
+	overflow: hidden;
+}
+
+/*::::::::::::::: conventAccordion SLIDE STYLE (END) :::::::::::::::*/
+
+/*::::::::::::::: CAPTION STYLE (BEGIN) :::::::::::::::*/
+
+.rb div.caption, .rb div.title{
+	background: #000;
+	background: rgba(0, 0, 0, 0.7);
+	width: 100%;
+	padding: 10px 0 45px;
+	color: #fff;
+	position: absolute;
+	bottom: 0px;
+}
+
+.rb div.caption h3, .rb div.caption p, .rb div.title h3, .rb div.title p{
+	margin:0;
+	padding:0 20px;
+	font-size: 12px;
+}
+
+.rb div.caption h3{
+	font-size: 14px;
+}
+
+/*::::::::::::::: CAPTION STYLE (END) :::::::::::::::*/
+
+/*::::::::::::::: VERTICAL NAVIGATION STYLE (BEGIN) :::::::::::::::*/
+
+.rb .CAnavigation{
+	position:absolute;
+	bottom: 5%;
+	margin: 0;
+	padding: 0;
+	list-style:none;
+	z-index:10;
+	right: 40px;
+	font-size: 11px;
+	line-height: 11px;
+	cursor: pointer;
+}
+
+.rb .CAnavigation li{
+	display:block;
+	float:left;
+	margin: 0;
+	padding: 0;
+}
+
+.rb .CAnavigation .CAnavTitle{
+	display:none;
+}
+
+.rb .CAnavigation .CAnavNumber{
+	display:block;
+	position:relative;
+	overflow:hidden;
+	width:19px;
+	padding: 6px 3px;
+	text-align: center;
+	margin-left: 5px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	text-decoration:none;
+}
+
+.rb .CAnavigation .active .CAnavNumber{
+	background: #555;
+}
+
+.rb .CAnavigation .disabled .CAnavNumber{
+	color: #555;
+}
+
+/*::::::::::::::: VERTICAL NAVIGATION STYLE (END) :::::::::::::::*/

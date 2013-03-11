@@ -1,0 +1,89 @@
+/*::::::::::::::: ACCORDION STYLE (BEGIN) :::::::::::::::*/
+
+.vs.wrapper {
+	width: 920px;
+	height: 320px;
+	position: relative;
+	overflow:hidden;
+	padding: 5px;
+	background: #d7d7d7;
+	border: 10px solid #fff;
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.vs .conventAccordion{
+	display:block;
+	width:720px !important;
+	height:320px;
+	left: auto !important;
+	right: 0;
+	float: right;
+	background: #fff;
+}
+
+/*::::::::::::::: ACCORDION STYLE (END) :::::::::::::::*/
+
+/*::::::::::::::: VERTICAL NAVIGATION STYLE (BEGIN) :::::::::::::::*/
+
+.vs .CAnavigation{
+	position: relative !important;
+	display: block;
+	float: left;
+	width: 200px;
+	margin-top: 0;
+	padding: 0;
+	list-style: none;
+	cursor: pointer;
+}
+
+.vs .CAnavigation .CAnavSpine{
+	display:block;
+	height: 20px;
+	padding: 12px 10px;
+	color: #000;
+	text-decoration: none;
+	font-weight: bold;
+}
+.vs .CAnavigation li:nth-child(even) {
+	background: #888
+}
+.vs .CAnavigation li:nth-child(odd) {
+	background: #999
+}
+
+.vs .CAnavigation .CAnavSpine.active{
+	color: #fff;
+	background: #000;
+	z-index:-2 !important;
+}
+.vs .CAnavigation .CAnavSpine.active:after {
+  content: '';
+  height: 30px; 
+  width: 30px;
+  position: absolute;  
+  left: 175px;
+  -webkit-transform: rotate(-45deg); -webkit-transform-origin: center top;
+  -moz-transform: rotate(-45deg); -moz-transform-origin: center top; 
+  -o-transform: rotate(-45deg); -o-transform-origin: center top; 
+  transform: rotate(-45deg); transform-origin: center top;
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  background: #000
+}
+
+.vs .CAnavigation .CAnavTitle{
+	margin-left: 10px;
+}
+
+.vs .CAnavigation .CAnavNumber{
+	float: left;
+}
+
+.vs .vertical .CAslideContent {
+	width: auto;
+	padding: 0;
+} 
+/*::::::::::::::: VERTICAL NAVIGATION STYLE (END) :::::::::::::::*/

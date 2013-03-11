@@ -77,6 +77,10 @@ $('#yourdiv').conventAccordion('next').conventAccordion('next');
 ***
 ###Changelog
 
+**v1.0.3** - 11/03/2013
+
+ -  Added css files for vertical slides, gallery and rotating banner.
+
 **v1.0.2** - 11/03/2013
 
  -  Update for publishing on plugins.jquery.com.

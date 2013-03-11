@@ -1,0 +1,161 @@
+/*::::::::::::::: conventAccordion SLIDE STYLE (BEGIN) :::::::::::::::*/
+
+.g.wrapper {
+	width: 720px;
+	height: 320px;
+	position: relative;
+	overflow:hidden;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.g .conventAccordion {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	float: right;
+	background: #ccc;
+}
+
+.g .conventAccordion > div {
+	position: relative;
+	margin: 0;
+	border-bottom: 1px solid #ccc;
+	overflow: hidden;
+}
+
+/*::::::::::::::: SLIDEDECK SLIDE STYLE (END) :::::::::::::::*/
+
+/*::::::::::::::: CAPTION STYLE (BEGIN) :::::::::::::::*/
+
+.g div.caption{
+	background: #000;
+	background: rgba(0, 0, 0, 0.7);
+	width: 50%;
+	padding: 10px 20px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: #fff;
+	position: absolute;
+	top: 175px;
+	left: 20px;
+}
+
+.g div.caption h3, .g div.caption p, .g div.title h3, .g div.title p{
+	margin:0;
+	padding:0;
+	width: auto;
+	font-size: 12px;
+}
+
+.g div.caption h3{
+	font-size: 14px;
+}
+
+.g div.title{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	padding: 20px 0 0 20px;
+	width: 50%;
+}
+
+.g div.title h3{
+	font-size:22px;
+	margin: 0 0 10px 0;
+}
+
+/*::::::::::::::: CAPTION STYLE (END) :::::::::::::::*/
+
+/*::::::::::::::: VERTICAL NAVIGATION STYLE (BEGIN) :::::::::::::::*/
+
+.g:hover .CAarrows li{
+	display:block;
+}
+
+.g .CAarrows{
+	position:absolute;
+	display: block;
+	margin: -14px 0 0;
+	padding: 0;
+	list-style:none;
+	overflow:visible;
+	top: 50%;
+	width:720px;
+	z-index:10;
+	cursor: pointer;
+}
+
+.g .CAarrows li{
+	width: 27px;
+	margin: 0;
+	padding: 0;
+	display: none;
+	position: absolute;
+	overflow: hidden;
+	height: 27px;
+	background: url('galleryNav.png') no-repeat 0 0;
+}
+
+.g .CAarrows li.CAnext{
+	background-position: -27px 0;
+}
+
+.g .CAarrows li.CAprev{
+	left: 10px;
+}
+
+.g .CAarrows li.disabled {
+	cursor: default;
+}
+
+.g .CAarrows li.CAnext.disabled {
+	background-position: -27px -27px;
+}
+
+.g .CAarrows li.CAprev.disabled {
+	background-position: 0 -27px;
+}
+
+.g .CAarrows li.CAnext{
+	right: 10px;
+}
+	
+.g .CAnavigation{
+	position:absolute;
+	bottom: 15px;
+	margin: 0;
+	padding: 0;
+	list-style:none;
+	z-index:10;
+	left: 50%;
+	cursor: pointer;
+}
+
+.g .CAnavigation .CAnavSpine{
+	display:block;
+	float:left;
+	margin: 0;
+	padding: 0;
+}
+
+.g .CAnavigation .CAnavTitle{
+	display:block;
+	position:relative;
+	overflow:hidden;			
+	height:0;
+	width:15px;
+	line-height: 20px;
+	padding: 15px 0 0;
+	background: url('galleryNav.png') -8px -60px no-repeat;
+}
+
+.g .CAnavigation .active .CAnavTitle{
+	background-position: -35px -60px;
+}
+
+/*::::::::::::::: VERTICAL NAVIGATION STYLE (END) :::::::::::::::*/
