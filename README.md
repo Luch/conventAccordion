@@ -75,7 +75,21 @@ To chain methods:
 $('#yourdiv').conventAccordion('next').conventAccordion('next');
 
 ***
+###Callbacks
+
+These are the callbacks for the conventAccordion plugin:
+
+	onActivate	 			 // callback on slide activate
+	onSlideOpen				 // callback on slide open
+	onSlideClose			 // callback on slide close
+	onLoad				 	 // callback on accordion load
+
+***
 ###Changelog
+
+**v1.1.0** - 15/06/2013
+
+ -  Added callback functions.
 
 **v1.0.3** - 11/03/2013
 
