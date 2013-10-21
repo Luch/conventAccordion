@@ -65,8 +65,10 @@ These are the methods for the conventAccordion plugin:
 	destroy					 // remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
 	debug					 // returns a debug object
 	navigation				 // create an external navigation structure
+	current					 // current active slide
+	totalslides				 // number of slides
 	
-All of these methods are chainable (i.e. they return the original DOM object) with the exception of the debug method.  To call a method, use:
+All of these methods are chainable (i.e. they return the original DOM object) with the exception of the debug, current and totalslides method.  To call a method, use:
 
 $('#yourdiv').conventAccordion('play');
 
