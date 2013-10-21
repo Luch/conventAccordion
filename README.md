@@ -61,7 +61,7 @@ These are the methods for the conventAccordion plugin:
 	stop					 // stop an accordion playing
 	next					 // trigger the next slide
 	prev				 	 // trigger the previous slide
-	active,n				 // trigger slide n
+	activate,n				 // trigger slide n
 	destroy					 // remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
 	debug					 // returns a debug object
 	navigation				 // create an external navigation structure
