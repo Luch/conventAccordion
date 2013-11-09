@@ -34,6 +34,7 @@ These are the default settings for the conventAccordion plugin:
 	continuous: true,		 // autoPlay one cycle or continuous
 	
 	startSlide: 1,			 // displays slide (n) on page load
+	remember: true,          // display last active slide on page refresh
 	slideSpeed: 600,		 // slide animation speed
 	easing: 'swing', 		 // custom easing function
 	
@@ -61,12 +62,14 @@ These are the methods for the conventAccordion plugin:
 	stop					 // stop an accordion playing
 	next					 // trigger the next slide
 	prev				 	 // trigger the previous slide
-	active,n				 // trigger slide n
+	activate,n				 // trigger slide n
 	destroy					 // remove the accordion, destroying all event handlers and styles (unstyled html content will remain)
 	debug					 // returns a debug object
 	navigation				 // create an external navigation structure
+	current                  // current active slide
+	totalslides              // number of slides
 	
-All of these methods are chainable (i.e. they return the original DOM object) with the exception of the debug method.  To call a method, use:
+All of these methods are chainable (i.e. they return the original DOM object) with the exception of the debug, current and totalslides method.  To call a method, use:
 
 $('#yourdiv').conventAccordion('play');
 
@@ -86,6 +89,11 @@ These are the callbacks for the conventAccordion plugin:
 
 ***
 ###Changelog
+**v1.2.0** - 15/09/2013
+ -  Second way to create conventAccordion using HTML5 data attributes without additional JavaScript code.
+ -  Added option remember. true(default): last active slide is displayed on page refresh
+                           false: startSlide is displayed on page refresh
+ -  startSlide: 0, will now start accordion with all slides closed.
 
 **v1.1.0** - 15/06/2013
 

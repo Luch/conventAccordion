@@ -13,12 +13,20 @@
 *	First full production version.
 *	Supports now spineless accordions to be used as gallery slidedeck and rotating banner.
 *	Extended navigation functions (external method navigation).
-*	1.1.0 2013-06-15 Luch Klooster
-*	Callbacks added (onActivate, onSlideOpen, onSlideClose, onLoad).
+*   1.1.0 2013-06-15 Luch Klooster
+*   Added callback functions.
+*   1.2.0 2013-09-15 Luch Klooster
+*   Second way to create conventAccordion using HTML5 data attributes without additional JavaScript code.
+*	Added option remember. true(default): last active slide is displayed on page refresh
+*                          false: startSlide is displayed on page refresh
+*   startSlide: 0, will now start accordion with all slides closed.
 */
 (function ($) {
 
 	var ConventAccordion = function (accordion, options) {
+        this.$elem = $(accordion);
+        var metadata = (this.$elem.data("options")) ? this.$elem.data("options") : {};
+        var attrdata = (this.$elem.data()) ? this.$elem.data() : {};
 		var elem = this;
 		var defaults = {
 			pauseOnHover: false,				// pause on hover
@@ -28,7 +36,8 @@
 			slideInterval: 3000,				// time between slide cycles
 			continuous: true,					// autoPlay one cycle or continuous
 
-			startSlide: 1,						// displays slide (n) on page load
+			startSlide: 1,						// displays slide (n) on page load, 0 all slides closed on page load
+			remember: true,						// display last active slide on page refresh
 			slideSpeed: 600,					// slide animation speed
 			easing: 'swing',					// custom easing function
 
@@ -51,11 +60,13 @@
 			prevTitle: 'Previous',
 			nextTitle: 'Next',
 			playTitle: 'Play',
-			stopTitle: 'Stop'
+			stopTitle: 'Stop',
+			
+			listStyleSymbol: '&rsaquo;'			// symbol used for list-style-type inherit (disc)
 		},
 
 			// merge defaults with options in new settings object 
-			settings = $.extend({}, defaults, options),
+			settings = $.extend({}, defaults, options, metadata, attrdata),
 
 			// globals
 			listItems = accordion.children('li'),
@@ -304,43 +315,62 @@
 						orientation = 'horizontal';
 						accordion.addClass('horizontal');
 					}
-					if (store.get(accordionID) == null)  {
-						store.set(accordionID, startSlide);
-					} else {
-						startSlide = parseInt(store.get(accordionID));
+					if (settings.remember) {
+						if (store.get(accordionID) == null)  {
+							store.set(accordionID, startSlide);
+						} else {
+							startSlide = parseInt(store.get(accordionID));
+						};
 					}
 					activeID = startSlide;
 
 					accordion.find('>li').each(function(index) {
 						var CAspine = $(this).find('>div:first');
 						var CAslide = $(this).find('>div:last');
-						// add unique id to each tab, add active corner
-						CAspine.wrapInner('<span class="CAspineTitle">').addClass('CAspine').addClass('CAspine_' + (index + 1));
-						if (index === startSlide) {CAspine.addClass('active')};
-						if (index === (startSlide + 1)) {CAspine.addClass('next')};
-						switch (listStyleType) {
-							case 'decimal':
-								$('<span class="CAspineNumber">' + (index + 1) + '</span>').appendTo(CAspine);
-								break;
-							case 'decimal-leading-zero':
-								$('<span class="CAspineNumber">' + (index + 1).pad() + '</span>').appendTo(CAspine);
-								break;
-							case 'lower-roman':
-								$('<span class="CAspineNumber">' + core.romanize(index + 1).toLowerCase() + '</span>').appendTo(CAspine);
-								break;
-							case 'upper-roman':
-								$('<span class="CAspineNumber">' + core.romanize(index + 1) + '</span>').appendTo(CAspine);
-								break;
-							case 'lower-alpha':
-								$('<span class="CAspineNumber">' + String.fromCharCode(index+97) + '</span>').appendTo(CAspine);
-								break;
-							case 'upper-alpha':
-								$('<span class="CAspineNumber">' + String.fromCharCode(index+65) + '</span>').appendTo(CAspine);
-								break;
-							case 'upper-latin':
-								$('<span class="CAspineNumber">' + String.fromCharCode(index+65) + '</span>').appendTo(CAspine);
-								break;
+						var CAspineNumber = CAspine.find('>div:first').html();
+						if (!$.isEmptyObject(CAspineNumber)) {
+							CAspine.find('>div:first').remove();
 						}
+						// add unique id to each tab, add active corner
+						CAspine.wrapInner('<span class="CAspineTitle" />').addClass('CAspine').addClass('CAspine_' + (index + 1));
+						if (startSlide > -1) {
+							if (index === startSlide) {CAspine.addClass('active')};
+							if (index === (startSlide + 1)) {CAspine.addClass('next')};
+						}
+						if ($.isEmptyObject(CAspineNumber)) {
+							switch (listStyleType) {
+								case 'decimal':
+									$('<span class="CAspineNumber">' + (index + 1) + '</span>').appendTo(CAspine);
+									break;
+								case 'decimal-leading-zero':
+									$('<span class="CAspineNumber">' + (index + 1).pad() + '</span>').appendTo(CAspine);
+									break;
+								case 'lower-roman':
+									$('<span class="CAspineNumber">' + core.romanize(index + 1).toLowerCase() + '</span>').appendTo(CAspine);
+									break;
+								case 'upper-roman':
+									$('<span class="CAspineNumber">' + core.romanize(index + 1) + '</span>').appendTo(CAspine);
+									break;
+								case 'lower-alpha':
+									$('<span class="CAspineNumber">' + String.fromCharCode(index+97) + '</span>').appendTo(CAspine);
+									break;
+								case 'upper-alpha':
+									$('<span class="CAspineNumber">' + String.fromCharCode(index+65) + '</span>').appendTo(CAspine);
+									break;
+								case 'upper-latin':
+									$('<span class="CAspineNumber">' + String.fromCharCode(index+65) + '</span>').appendTo(CAspine);
+									break;
+								case 'none':
+									break;
+								default:
+								//case 'disc': // inherit
+									$('<span class="CAspineNumber">' + settings.listStyleSymbol + '</span>').appendTo(CAspine);
+									break;
+							}
+						} else {
+							$('<span class="CAspineNumber">' + CAspineNumber + '</span>').appendTo(CAspine);
+						}
+
 						CAslide.wrapInner('<div class="CAslideContent">').addClass('CAslide');
 					});
 				},
@@ -431,23 +461,23 @@
 					var resizeTimer = 0;
 
 					if (settings.actOnHover) {
-						accordion.find('.CAspine').not('active').on('click.conventAccordion mouseover.conventAccordion auto.conventAccordion nav.conventAccordion', core.animateSlide);
+						accordion.find('.CAspine').not('active').bind('click.conventAccordion mouseover.conventAccordion auto.conventAccordion nav.conventAccordion', core.animateSlide);
 					} else {
-						accordion.find('.CAspine').not('active').on('click.conventAccordion auto.conventAccordion nav.conventAccordion', core.animateSlide);
+						accordion.find('.CAspine').not('active').bind('click.conventAccordion auto.conventAccordion nav.conventAccordion', core.animateSlide);
 					}
 					// pause on hover (can't use custom events with $.hover())      
 					if (settings.pauseOnHover && settings.autoPlay) {
 						accordion
-							.on('mouseover.conventAccordion', function() {
+							.bind('mouseover.conventAccordion', function() {
 								core.playing && methods.stop();
 							})
-							.on('mouseout.conventAccordion', function() {
+							.bind('mouseout.conventAccordion', function() {
 								!core.playing && methods.play(activeID);
 							});
 					}
 
 					// resize and orientationchange
-					$(window).on('resize.conventAccordion orientationchange.conventAccordion', function() {
+					$(window).bind('resize.conventAccordion orientationchange.conventAccordion', function() {
 					// approximates 'onresizeend'
 						clearTimeout(resizeTimer);
 						resizeTimer = setTimeout(function() {core.responsive()}, 100);
@@ -475,7 +505,7 @@
 						if (index > -1 && index < cacheSlideNames.length) spines.eq(index).trigger('click.conventAccordion');
 					};
 
-					$(window).on('hashchange.conventAccordion load.conventAccordion', triggerHash);
+					$(window).bind('hashchange.conventAccordion load.conventAccordion', triggerHash);
 				},
 
 				// next slide index
@@ -552,8 +582,10 @@
 					}
 
 					// save activeID for pagerefresh
-					store.set(accordionID, activeID);
-
+					if (settings.remember) {
+						store.set(accordionID, activeID);
+					}
+						
 					// trigger callback if there is one
 					if (typeof settings.onSlideOpen == "function") settings.onSlideOpen(methods, $this);
 				},
@@ -622,7 +654,9 @@
 					timerInstance = new trackerObject();
 					timerInstance.paused = false;
 
-					accordion.find('.CAspine:eq(' + (startSlide) + ')').trigger('click.conventAccordion');
+					if (startSlide > -1) {
+						accordion.find('.CAspine:eq(' + (startSlide) + ')').trigger('click.conventAccordion');
+					}
 
 					// check slide speed is not faster than interval speed
 					if (settings.slideInterval < settings.slideSpeed) settings.slideInterval = settings.slideSpeed;
@@ -643,7 +677,7 @@
 			store = {
 				localStoreSupport : function() {
 					try {
-						return 'localStorage' in window && window['localStorage'] !== null;
+						return (navigator.userAgent.indexOf('MSIE')==-1) && 'localStorage' in window && window['localStorage'] !== null;
 					} catch (e) {
 						return false;
 					}
@@ -723,5 +757,27 @@
 			}
 		}
 	};
+ 
+	$(document).ready(function () {
+        $("[data-role='conventaccordion']").each(function (index, item) {
+            if (!$(item).conventAccordion())
+                $(item).conventAccordion();
+
+            $(item).find("[data-role='conventaccordion']").each(function (index, nested2) {
+                if (!$(nested2).conventAccordion())
+                    $(nested2).conventAccordion();
+
+                $(nested2).find("[data-role='conventaccordion']").each(function (index, nested3) {
+                    if (!$(nested3).conventAccordion())
+                        $(nested3).conventAccordion();
+
+                    $(nested3).find("[data-role='conventaccordion']").each(function (index, nested4) {
+                        if (!$(nested4).conventAccordion())
+                            $(nested4).conventAccordion();
+                    });
+                });
+            });
+        });
+    });
 
 })(jQuery);
