@@ -1,8 +1,7 @@
-##[conventAccordion](http://members.ziggo.nl/luch.klooster/)
+##[conventAccordion]
 
 conventAccordion is an accordion plugin for jQuery.
 
-Demo page at http://members.ziggo.nl/luch.klooster/
 
 ***
 ###Styling
